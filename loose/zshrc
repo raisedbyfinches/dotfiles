@@ -1,0 +1,16 @@
+#-*- karetsu -*-#
+fpath+=~/.zfunc
+autoload -Uz compinit
+compinit
+
+# Sourcing personal preferences
+source ~/.profile
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+source ~/.fznctions
+
+eval "$(direnv hook zsh)"
+
+# use a beam type cursor
+echo -ne '\e[5 q'
+
+eval "$(starship init zsh)"

@@ -1,0 +1,131 @@
+#+title: Linear Algebra
+#+date: <2024-12-03 Tue>
+
+Working through 3b1b's video playlist on linear algebra the question of a project to undertake at the end came up. Nobody had any ideas so I came up with a few.
+
+* Project 1
+
+Build an interactive linear algebra visualisation tool.
+
+** Objective
+Create a python or R application which demonstrates linear algebra concepts through interactive visualisations. Methods built "by hand" as much as possible to prove the learning to yourself.
+
+** Features
+
+*** Foundational level
+
+**** Basic matrix transformations
+*Skill*: NumPy linear algebra basics
+*Tasks*:
+ - Visualise matrix multiplication
+ - Demonstrate co-ordinate transformations
+ - Interactive rotation/scaling visualisation
+
+**** Simple linear equations
+*Skill*: Basic linear algebra
+*Tasks*:
+ - Solve systems of linear equations
+ - Visualise solution spaces
+ - Interactive Gaussian elimination
+
+*** Intermediate level
+
+**** Eigenexplorer
+*Skill*: Advanced linear algebra understanding
+*Tasks*:
+ - Calculate and visualise eigenvectors
+ - Interactive eigendecomposition
+ - Demonstrate Principal Component Analysis (PCA)
+
+**** Dimensionality reduction
+*Skill*: Data preprocessing techniques
+*Tasks*:
+ - Implement PCA from scratch
+ - Visualise data compression
+ - Compare different dimensionality reduction techniques
+
+*** Advanced level
+
+**** Machine learning applications
+*Skill*: Foundations of machine learning
+*Tasks*:
+ - Implement linear regression using matrix operations
+ - Create neural network weight visualisation
+ - Demonstrate gradient descent with linear algebra
+
+**** Signal processing techniques
+*Skill*: Advanced mathematical modelling
+*Tasks*:
+ - Implement Fourier transforms
+ - Visualise signal decomposition
+ - Create interactive spectral analysis tool
+
+** Technology
+You will be allowed to use one of the following stacks only. No other libraries or tools should be used. Except by me, because I'll use  *λ* Haskell *λ*.
+
+- Python + numpy + matplotlib + plotly
+- R + tidyverse + ggplot2/plotly
+
+The presentation of these should make use of one of:
+
+- streamlit
+- shiny
+- Jupyter notebook or Rmarkdown (preferably quarto) document
+
+
+** Project components
+
+ - Matrix transformation visualiser
+ - Eigenvalue/eigenvector calculator
+ - Dimensionality reduction demonstration
+ - Interactive learning interface
+
+** Learning outcomes
+
+- Reinforce linear algebra concepts
+- Develop data visualisation skills
+- Practice programmatic matrix manipulation
+
+
+* Project 2
+
+Similar to the above. This is for those who aren't comfortable with the visualisation aspect of project idea 1. The only difference in this project is the content. All of the other sections it inherits from above.
+
+** Features
+
+*** Foundational level
+
+**** Manipulating and handling matrices
+*Skill*: Applying transformations to data
+*Tasks*:
+ - Compute matrix-vector products
+ - Solve simple linear systems
+ - Implement basic matrix transformations
+ - Get practice using numpy and tidyverse
+
+*** Intermediate level
+
+**** Advanced matrix operations
+*Skill*: Handling complex systems of equations
+*Tasks*:
+ - Solve underdetermined and overdetermined systems of equations
+ - Implement least squares regression
+ - Compute matrix decompositions (LU, QR)
+ - Handle some more complex linear algebra problems*
+
+*** Advanced level
+
+**** Complex applications
+*Skill*: Linear algebra wizardry
+*Tasks*:
+ - Solve non-linear systems using matrix methods*
+ - Implement iterative solving techniques
+ - Create some optimisation algorithms*
+ - Develop numerical methods approaches for complex matrix equations*
+
+
+ * Provided on demand
+
+* Skill progression
+
+All of these tasks provide a progression of skills. If you feel unable to perform any of the listed tasks do not feel downhearted. There are still others that you can try. Everyone was a linear algebra novice at some time!

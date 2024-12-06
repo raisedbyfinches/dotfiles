@@ -1,0 +1,10 @@
+#+title: Rice
+
+* TODO Actions [3/6]
+
+- [ ] Write a dashboard in eww
+- [ ] find a good calendar app that can launch when clicking the calendar
+- [X] incorporate ~nwg-drawer~ into my keybinds
+- [X] make the power options yellow for selected and red on hover
+- [X] fix eww music icon rendering
+- [ ] write automatic eww widget to show submap options
