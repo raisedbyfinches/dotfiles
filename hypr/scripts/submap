@@ -1,0 +1,128 @@
+#!/usr/bin/env zsh
+
+# # set up the default value
+# echo "󰧖"
+
+# # Provide the link to our Hyprland socket
+# HYPR="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+# # Check if the socket exists
+# if [ ! -e "$HYPR" ]; then
+#   echo "Trying to connect to $HYPR"
+#   echo "Socket not found!"
+#   exit 1
+# fi
+
+# # Read from the socket and filter based on the specified pattern
+# while IFS= read -r line; do
+#   # Use grep to search for the pattern "submap>>"
+#   if [[ $line == *submap\>\>* ]]; then
+#     # Extract and compare the content after "submap>>"
+#     case $line in
+#     "submap>>Super")
+#       echo "󰧜"
+#       ;;
+#     "submap>>Session")
+#       echo "󱃗"
+#       ;;
+#     "submap>>Workspace")
+#       echo "󰵆"
+#       ;;
+#     "submap>>Windows")
+#       echo "󱗜"
+#       ;;
+#     "submap>>Move")
+#       echo "󱥪"
+#       ;;
+#     "submap>>Shift")
+#       echo "󰜵"
+#       ;;
+#     "submap>>Resize")
+#       echo "󰋠"
+#       ;;
+#     "submap>>Apps")
+#       echo "󰋒"
+#       ;;
+#     "submap>>Media")
+#       echo "󰎄"
+#       ;;
+#     "submap>>Settings")
+#       echo "󰒔"
+#       ;;
+#     *)
+#       echo "󰧖"
+#       ;;
+
+#     esac
+#   fi
+# done < <(nc -U "$HYPR")
+
+# set up the default value
+echo "󰧖"
+
+# Provide the link to our Hyprland socket
+HYPR="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+# Socket for communication
+BINDS="/tmp/binds"
+
+# Check if the Hyprland socket exists
+if [ ! -e "$HYPR" ]; then
+  echo "Trying to connect to $HYPR"
+  echo "Socket not found!"
+  exit 1
+fi
+
+# Read from the socket and filter based on the specified pattern
+while IFS= read -r line; do
+  # Use grep to search for the pattern "submap>>"
+  if [[ $line == *submap\>\>* ]]; then
+    # Extract and compare the content after "submap>>"
+    case $line in
+    "submap>>Super")
+      echo "Super" >"$BINDS"
+      echo "󰧜"
+      ;;
+    "submap>>Session")
+      echo "Session" >"$BINDS"
+      echo "󱃗"
+      ;;
+    "submap>>Workspace")
+      echo "Workspace" >"$BINDS"
+      echo "󰵆"
+      ;;
+    "submap>>Windows")
+      echo "Windows" >"$BINDS"
+      echo "󱗜"
+      ;;
+    "submap>>Move")
+      echo "Move" >"$BINDS"
+      echo "󱥪"
+      ;;
+    "submap>>Shift")
+      echo "Shift" >"$BINDS"
+      echo "󰜵"
+      ;;
+    "submap>>Resize")
+      echo "Resize" >"$BINDS"
+      echo "󰋠"
+      ;;
+    "submap>>Apps")
+      echo "Apps" >"$BINDS"
+      echo "󰋒"
+      ;;
+    "submap>>Media")
+      echo "Media" >"$BINDS"
+      echo "󰎄"
+      ;;
+    "submap>>Settings")
+      echo "Settings" >"$BINDS"
+      echo "󰒔"
+      ;;
+    *)
+      echo "" >"$BINDS"
+      echo "󰧖"
+      ;;
+    esac
+  fi
+done < <(socat UNIX-CONNECT:"$HYPR" STDOUT)

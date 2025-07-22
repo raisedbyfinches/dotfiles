@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+# Toggle hypridle service
+if pidof hypridle >/dev/null; then
+    echo "Hypridle is currently running. Stopping the service..."
+    systemctl --user stop --now hypridle.service
+    echo "Hypridle service stopped."
+else
+    echo "Hypridle is not running. Starting the service..."
+    systemctl --user start --now hypridle.service
+    echo "Hypridle service started."
+fi

@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+set -e
+
+mirror=$1
+
+echo " Executing mirror: $mirror"
+cd ~/.mirrors/$mirror
+
+echo "   Fetching remote"
+git fetch -p origin || exit
+echo "    -- complete"
+
+echo "   Pushing mirror"
+git push --mirror
+echo "    -- complete"

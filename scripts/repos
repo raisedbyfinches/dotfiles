@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+set -e
+echo " Checking repos"
+fd -t d -H '\.git$' ~ | grep -Ev 'Trash|Download|Project|zplug' | sed 's/\/\.git//' > ~/.repos
+
+for i in $(< ~/.repos);
+  do
+    cd $i;
+    REPO_STATUS=$(git diff-index --name-only --ignore-submodules HEAD -- | wc -l);
+    [[ $REPO_STATUS > 0 ]] && echo "    $i";
+    cd ~;
+done;
+
+# TODO: add a .repos-ignore to pass in those which I want to avoid, replace loop
+#       with pipe and function, output only those which have changed and add a
+#       no changes text output. Generally make this better, its a first stab and
+#       minimum usable content

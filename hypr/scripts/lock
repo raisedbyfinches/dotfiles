@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+# Check if Spotify is currently playing
+if playerctl -p spotify status 2>/dev/null | grep -q "Playing"; then
+    # Pause Spotify
+    playerctl -p spotify pause
+fi
+
+# Lock the screen with Hyprlock
+hyprlock

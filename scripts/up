@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+pushd /etc/nixos
+
+nix flake update
+git add *
+git commit -m "$(date +%Y%m%d): update flake lock" && git push
+
+sudo nixos-rebuild switch --flake .#grunkleStan
+sudo nix-collect-garbage --delete-old
+
+popd

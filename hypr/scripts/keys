@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+
+submap=$1
+
+hyprctl binds -j | jq -r --arg submap "$submap" '
+    .[]                                                |
+    select(.arg != "reset")                            |
+    select(.description != "")                         |
+    select(.submap == $submap)                         |
+    { "submap": .submap
+    , "key": .key
+    , "arg": .arg
+    , "desc": .description
+    , "modmask": .modmask
+    }                                                  |
+    # Modify key based on modmask
+    (.modmask as $modmask                              |
+      .key as $key                                     |
+
+      # If modmask is 1, prepend "S-" to the key
+      if $modmask == 1 then "S-" + $key else $key end
+    ) as $formatted_key                                |
+    { "key": $formatted_key
+    , "desc": .desc
+    }                                                  |
+    "(\(.key)) \(.desc)"
+'

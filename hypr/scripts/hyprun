@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+bemenu-run -b -H 52 --cw 2 --ch 18 --hp 10 \
+  --fn "Noto Sans Bold" \
+  --tf "#09F7A0" --tb "#16161c" \
+  -p "   Run:   " \
+  --fb "#16161c" --hb "#16161c" --cb "#16161c" --nb "#16161c" --ab "#16161c" --sb "#16161c"\
+  --nf "#2E303E" --af "#2E303E" --sf "#E95678" -i
