@@ -11,6 +11,11 @@
 </h1>
 <br>
 
+[nixos-discourse]: https://discourse.nixos.org
+[doomemacs]: https://github.com/doomemacs/doomemacs
+[agenix]: https://github.com/ryantm/agenix
+
+
 
 **Hey.** I said **hey**. This is my personal collection of configuration files.
 
@@ -157,7 +162,7 @@ COMMANDS:
 
 + **How do you manage secrets?**
 
-  With [agenix].
+  With `agenix`.
 
 + **Why did you write bin/hey?**
 
@@ -193,15 +198,15 @@ COMMANDS:
     ecosystem](https://www.ianthehenry.com/posts/how-to-learn-nix/introduction/)
   - [What y'all will need when Nix drives you to drink.](https://www.youtube.com/watch?v=Eni9PPPPBpg)
 
-  And if all else fails, ask for help on [the NixOS Discourse][nixos-discourse].
+  And if all else fails, ask for help on [the NixOS Discourse](https://discourse.nixos.org).
 
 
 
 ## Useful links
 
-[nixos-discourse]: https://discourse.nixos.org
-[doomemacs]: https://github.com/doomemacs/doomemacs
-[agenix]: https://github.com/ryantm/agenix
+- [nixos-discourse](https://discourse.nixos.org)
+- [doomemacs](https://github.com/doomemacs/doomemacs)
+- [agenix](https://github.com/ryantm/agenix)
 
 
 ---
