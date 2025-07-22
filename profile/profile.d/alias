@@ -1,0 +1,72 @@
+#!/usr/bin/env zsh
+
+# tty-clock alias given a [[1 2],[1 3]] setup with clock on 2 or 3
+alias clock="tty-clock -cn -C 4 -D"
+
+# application shortcuts
+alias e="emacsclient"
+alias ls="eza --sort=name --group-directories-first"
+alias l="eza -blF --icons"
+alias ll="eza -abghilmu"
+alias llm='ll --sort=modified'
+alias la="LC_COLLATE=C eza -ablF"
+alias tree='eza --tree'
+alias lsd="eza -lhD"
+alias haskd="ghcid -c=\"nix-shell --command 'cabal repl'\""
+alias rm="trash"
+alias dw="wget -q --show-progress --progess=bar:force:noscroll"
+alias cat="bat"
+alias mkdir='mkdir -pv' # always complete a path creation
+alias reload='source /run/current-system/etc/set-environment'
+alias path='echo -e ${PATH//:/\\n}'
+
+if (( $+commands[mpv] )); then
+  alias -s {mp4,avi,mkv,mov}=mpv
+fi
+
+if (( $+commands[xdg-open] )); then
+  alias open=xdg-open
+fi
+
+
+# directory navigation shortcuts
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# git pretty log
+git config --global alias.plog "log --color --graph \
+           --pretty=format:'%C(bold white)%h%Creset \
+           -%C(blue)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\
+           --abbrev-commit"
+
+[[ $(git config init.defaultbranch) == "main" ]] ||
+  git config --global init.defaultbranch main
+
+# system admin
+alias jc='journalctl -xe'
+alias jcu='journalctl -xe -u'
+alias sc=systemctl
+alias scu='systemctl --user'
+alias scur='systemctl --user restart'
+alias scus='systemctl --user status'
+alias ssc='sudo systemctl'
+alias sscr='sudo systemctl restart'
+alias sscs='sudo systemctl status'
+
+# fasd fuzzy completion
+if [[ -n ${commands[fasd]} && -n ${commands[fzf]} ]]; then
+  # fuzzy completion with 'z' when called without args
+  (( ${+aliases[z]} )) && unalias z
+  function z {
+    if (( $# > 0 )); then
+      fasd_cd -d $@
+    else
+      local dir=$(fasd_cd -d -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')
+      [[ -n $dir ]] && cd $dir
+    fi
+  }
+fi
+

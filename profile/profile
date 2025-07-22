@@ -1,0 +1,25 @@
+#-- SYSTEM OPTIONS -------------------------------------------------------------
+# Make sure my default path is set correctly
+
+# Set the local stuff in case its not in the rest of the path
+export PATH=/home/g/.local/bin:"$PATH"
+
+# Setting locale, just in case its not set in the million other places...
+export LANG=en_GB.UTF-8
+
+# Adding an editor and adding doom to PATH
+export VISUAL="emacs -nw"
+export EDITOR="emacs"
+export PATH="$HOME/.config/emacs/bin":"$PATH"
+
+#-- Personal scripts -----------------------------------------------------------
+# these should go last because some have the same names as real programs
+export PATH="$PATH":/home/g/.scripts
+
+#-- DIRENV ---------------------------------------------------------------------
+eval "$(direnv hook zsh)"
+
+# -- Settings ------------------------------------------------------------------
+. "$HOME/.profile.d/alias"
+. "$HOME/.profile.d/functions"
+. "$HOME/.secrets"

@@ -1,0 +1,104 @@
+#!/usr/bin/env zsh
+
+# Count the number of commits in a git repo
+function git_commit_count() {
+  if git rev-parse --is-inside-work-tree &>/dev/null; then
+    git rev-list --count HEAD
+  else
+    echo "* Not a git repository"
+  fi
+}
+
+# Preview the first N rows of a CSV file
+preview() {
+  # Usage: preview <file> [<rows>]
+  local file="$1"
+  local rows="${2:-5}"
+  if [[ -f "$file" ]]; then
+    head -n "$rows" "$file" | column -s, -t
+  else
+    echo "* File not found: $file"
+  fi
+}
+
+# Get the number of rows and columns in a CSV file
+shape() {
+  # Usage: shape <file>
+  local file="$1"
+  if [[ -f "$file" ]]; then
+    local rows=$(wc -l <"$file")
+    local cols=$(head -n 1 "$file" | awk -F, '{print NF}')
+    echo "${file}: ($rows, $cols)"
+  else
+    echo "* File not found: $file"
+  fi
+}
+
+# Extract a column from a CSV file
+extract() {
+  # Usage: extract <file> <column_number>
+  local file="$1"
+  local col_num="$2"
+  if [[ -f "$file" ]]; then
+    if [[ "$col_num" =~ ^[0-9]+$ ]] && ((col_num > 0)); then
+      cut -d, -f"$col_num" "$file"
+    else
+      echo "* Invalid column number: $col_num"
+    fi
+  else
+    echo "* File not found: $file"
+  fi
+}
+
+# Check for missing values in a CSV file
+missing() {
+  # Usage: missing <file>
+  local file="$1"
+  if [[ -f "$file" ]]; then
+    awk -F, '{for(i=1;i<=NF;i++) if($i == "") print "Row " NR ", Column " i " is missing"}' "$file"
+  else
+    echo "* File not found: $file"
+  fi
+}
+
+# bin and partition CSV file into multiple files based on an input value
+splitcsv() {
+  # Usage: partition <file> <column_number>
+  local file="$1"
+  local col_num="$2"
+  if [[ -f "$file" ]]; then
+    if [[ "$col_num" =~ ^[0-9]+$ ]] && ((col_num > 0)); then
+      awk -F, -v col="$col_num" '{print > $col ".csv"}' "$file"
+      echo "Files created based on column $col_num values."
+    else
+      echo "* Invalid column number: $col_num"
+    fi
+  else
+    echo "* File not found: $file"
+  fi
+}
+
+partition() {
+  # Usage: partition <file> <column_number> <value>
+  local file="$1"
+  local col_num="$2"
+  local value="$3"
+
+  if [[ -f "$file" ]]; then
+    if [[ "$col_num" =~ ^[0-9]+$ ]] && ((col_num > 0)); then
+      awk -F, -v col="$col_num" -v val="$value" '$col == val {print > "partition_eq" val ".csv"}' "$file"
+      awk -F, -v col="$col_num" -v val="$value" '$col < val {print > "partition_lt" val ".csv"}' "$file"
+      awk -F, -v col="$col_num" -v val="$value" '$col > val {print > "partition_gt" val ".csv"}' "$file"
+      echo "* Partitioned into files named partition_<comparison><value>.csv"
+    else
+      echo "* Invalid column number: $col_num"
+    fi
+  else
+    echo "* File not found: $file"
+  fi
+}
+
+# Emacs-related functions
+ediff() { emacs -nw --eval "(ediff-files \"$1\" \"$2\")"; }
+eman() { emacs -nw --eval "(switch-to-buffer (man \"$1\"))"; }
+ekill() { emacsclient --eval '(kill-emacs)'; }
