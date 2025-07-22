@@ -10,7 +10,7 @@ function git_commit_count() {
 }
 
 # Preview the first N rows of a CSV file
-preview() {
+csvpreview() {
   # Usage: preview <file> [<rows>]
   local file="$1"
   local rows="${2:-5}"
@@ -22,7 +22,7 @@ preview() {
 }
 
 # Get the number of rows and columns in a CSV file
-shape() {
+csvshape() {
   # Usage: shape <file>
   local file="$1"
   if [[ -f "$file" ]]; then
@@ -35,7 +35,7 @@ shape() {
 }
 
 # Extract a column from a CSV file
-extract() {
+csvextract() {
   # Usage: extract <file> <column_number>
   local file="$1"
   local col_num="$2"
@@ -51,7 +51,7 @@ extract() {
 }
 
 # Check for missing values in a CSV file
-missing() {
+csvmissing() {
   # Usage: missing <file>
   local file="$1"
   if [[ -f "$file" ]]; then
@@ -62,7 +62,7 @@ missing() {
 }
 
 # bin and partition CSV file into multiple files based on an input value
-splitcsv() {
+csvsplit() {
   # Usage: partition <file> <column_number>
   local file="$1"
   local col_num="$2"
@@ -78,7 +78,7 @@ splitcsv() {
   fi
 }
 
-partition() {
+csvpartition() {
   # Usage: partition <file> <column_number> <value>
   local file="$1"
   local col_num="$2"
