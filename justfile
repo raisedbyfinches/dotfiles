@@ -4,10 +4,10 @@ default:
     @echo "  shell   - Copy shell settings to ~"
     @echo "  scripts - Copy scripts to ~/.scripts"
     @echo "  config  - Copy config to ~/.config"
-    @echo "  all     - Run all of the above"
+    @echo "  install - Run all of the above"
 
 
-all: shell config scripts
+install: shell config scripts
     @echo "All tasks completed!"
 
 
@@ -52,8 +52,4 @@ hey:
     #!/usr/bin/env bash
     set -euo pipefail
 
-    cp hey/hey ~/.scripts/
-    [[ ! -d "$HOME/.hey.d" ]] && mkdir -p "$HOME/.hey.d"
-    cp -a hey/hey.d/* ~/.hey.d
-
-    echo "* Copied hey"
+    echo "* TO DO"
